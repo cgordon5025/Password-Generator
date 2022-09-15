@@ -11,7 +11,8 @@ The purpose of this application si to generate a secure password based off crite
 ![Mock-up of page](./assets/mock-up.png)
 
 ## Credits
-N/A
+https://w3collective.com/random-password-generator-javascript/
+Very helpful website when it came to producing the password based off the criteria provided
 
 ## License
 N/A
