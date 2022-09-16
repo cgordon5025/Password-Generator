@@ -18,4 +18,4 @@ Very helpful website when it came to producing the password based off the criter
 N/A
 
 ## Link to Application
-[Link to application](https;//cgordon5025.github.io/Password-Generator/)
+[Link to application](https://cgordon5025.github.io/Password-Generator/)
