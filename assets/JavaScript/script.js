@@ -6,11 +6,10 @@ var passLengthChoice = 0; //All stored values will be 'no' by default
 var password = [];
 var passwordRaw = [];
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-upperCase = upperCase.split('')
-
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var numbers = "1234567890";
 var special = "!@#$%^&*()";
+upperCase = upperCase.split('')
 lowerCase = lowerCase.split('')
 numbers = numbers.split('')
 special = special.split('')
@@ -20,6 +19,22 @@ var incLowerCase = 0;
 var incSpecialChar = 0;
 var incNumbs = 0;
 function generatePassword() {
+
+  //Establishing all mutable variables locally because if not they are saved over by successive attempts
+  var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var lowerCase = "abcdefghijklmnopqrstuvwxyz";
+var numbers = "1234567890";
+var special = "!@#$%^&*()";
+upperCase = upperCase.split('')
+lowerCase = lowerCase.split('')
+numbers = numbers.split('')
+special = special.split('')
+
+var incUpperCase = 0;
+var incLowerCase = 0;
+var incSpecialChar = 0;
+var incNumbs = 0;
+
   password = [];
   var passLength = window.prompt("How long do you want your password to be");
   if (!passLength) {
