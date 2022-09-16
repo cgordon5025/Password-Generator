@@ -6,9 +6,13 @@ var passLengthChoice = 0; //All stored values will be 'no' by default
 var password = [];
 var passwordRaw = [];
 var upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+upperCase = upperCase.split('')
+
 var lowerCase = "abcdefghijklmnopqrstuvwxyz";
 var numbers = "1234567890";
 var special = "!@#$%^&*()";
+lowerCase = lowerCase.split('')
+numbers = numbers.split('')
 special = special.split('')
 
 var incUpperCase = 0;
@@ -16,60 +20,68 @@ var incLowerCase = 0;
 var incSpecialChar = 0;
 var incNumbs = 0;
 function generatePassword() {
+  password = [];
   var passLength = window.prompt("How long do you want your password to be");
   if (!passLength) {
     return;
   }
   // this first as the rest is in relation to each other
-
+//Based on their response we'll either store their response or prompt them until its valid
   if (passLength >= 8 && passLength <= 128) {
     passLengthChoice = passLength;
-  } else//if (passLength < 8 || passLength > 128) 
+  } else
     while (passLength < 8 || passLength > 128) {
       passLength = window.prompt("Character length invalid, please give another number")
       passLengthChoice = passLength;
     } if (!passLength || passLength == NaN) {
       return;
     }
+  //currently passLengthChoice is a string, making it an int for  ease later
   passLengthChoice =parseInt(passLengthChoice);
   //Code for upper and lower case, special characters and numbers
   var lowerPrompt = window.confirm("Would you like to include lower case letters in your password?");
   var upperPrompt = window.confirm("Would you like to include upper case letters in your password?")
   var specialCharPrompt = window.confirm("Do you want any special characters?");
   var numberPrompt = window.confirm("Do you want any numbers in your password?");
-  
+  //We are automatically picking a charcater based on their criteria so we can guarantee that it makes it in to the password
+  //also setting the strings to 0 if they don't want certain critera
   if (specialCharPrompt){
-      incSpecialChar = Math.floor(Math.random()*special.length)
-      passwordRaw.push(special[incSpecialChar])
-  }
+      incSpecialChar = Math.floor(Math.random()*special.length);
+      password.push(special[incSpecialChar]);
+  }else special = [];
   if (numberPrompt){
-    incNumbs = Math.floor(Math.random()*numbers.length)
-    passwordRaw.push(numbers[incNumbs])
-  }
+    incNumbs = Math.floor(Math.random()*numbers.length);
+    password.push(numbers[incNumbs]);
+  } else numbers = [];
   if (lowerPrompt){
-    incLowerCase = Math.floor(Math.random()*lowerCase.length)
-    passwordRaw.push(lowerCase[incLowerCase])
-  }
+    incLowerCase = Math.floor(Math.random()*lowerCase.length);
+    password.push(lowerCase[incLowerCase]);
+  }else lowerCase = [];
   if (upperPrompt){
-    incUpperCase = Math.floor(Math.random()*upperCase.length)
-    passwordRaw.push(upperCase[incUpperCase])
-  }
-  var passString = upperCase + lowerCase + numbers + special
-  passString = passString.split('')
-  var desiredLength = passLengthChoice-passwordRaw.length;
+    incUpperCase = Math.floor(Math.random()*upperCase.length);
+    password.push(upperCase[incUpperCase]);
+  }else upperCase = [];
+  //here we make a big array of all the charcaters to pull from, 
+  var passString = [];
+  passString = passString.concat(upperCase);
+  passString = passString.concat(lowerCase);
+  passString = passString.concat(numbers)
+  passString = passString.concat(special);
+  var desiredLength = passLengthChoice-password.length;
   console.log (desiredLength)
+  //loop to make the rest of the password based off the criteria provided
     for (var i = 0; i < desiredLength; i++) {
       character = (Math.floor(Math.random() * passString.length));
-      passwordRaw.push(passString[character])
+      password.push(passString[character])
     }
-    let passwordShuffled = passwordRaw.sort(function(){
+    //lets shuffle the password to make a truly original password
+    let passwordShuffled = password.sort(function(){
       return Math.random() -0.5;
     })
     //shuffle pass here
     password = passwordShuffled.join('')
     
   return password
-
   // conditional statement to see if to check for specific characters and to redo if it doesn't have it
 }
 // Write password to the #password input
