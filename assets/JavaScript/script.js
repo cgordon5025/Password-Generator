@@ -62,8 +62,11 @@ function generatePassword() {
       character = (Math.floor(Math.random() * passString.length));
       passwordRaw.push(passString[character])
     }
+    let passwordShuffled = passwordRaw.sort(function(){
+      return Math.random() -0.5;
+    })
     //shuffle pass here
-    password = passwordRaw.join('')
+    password = passwordShuffled.join('')
     
   return password
 
@@ -82,4 +85,3 @@ function writePassword() {
 // // This line below will actually execute the code to generate the password
 // // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
