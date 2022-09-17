@@ -40,17 +40,12 @@ var incNumbs = 0;
   if (!passLength) {
     return;
   }
-  // this first as the rest is in relation to each other
-//Based on their response we'll either store their response or prompt them until its valid
-  if (passLength >= 8 && passLength <= 128) {
-    passLengthChoice = passLength;
-  } else
-    while (passLength < 8 || passLength > 128) {
-      passLength = window.prompt("Character length invalid, please give another number")
-      passLengthChoice = passLength;
-    } if (!passLength || passLength == NaN) {
-      return;
-    }
+  if (passLength<8||passLength>128||passLength==NaN){
+    alert("Character length invalid, please give another number")
+    return
+  }
+  passLengthChoice = passLength
+
   //currently passLengthChoice is a string, making it an int for  ease later
   passLengthChoice =parseInt(passLengthChoice);
   //Code for upper and lower case, special characters and numbers
