@@ -77,7 +77,7 @@ function generatePassword() {
   passString = passString.concat(lowerCase);
   passString = passString.concat(numbers)
   passString = passString.concat(special);
-  var desiredLength = passLengthChoice - password.length;
+  var desiredLength = passLengthChoice-password.length;
   //loop to make the rest of the password based off the criteria provided
   for (var i = 0; i < desiredLength; i++) {
     character = (Math.floor(Math.random() * passString.length));
